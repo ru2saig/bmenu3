@@ -4,6 +4,11 @@ import re
 import sys
 from os.path import isdir
 
+#TODO: put this in the README, and add more things,a s well.
+#also change the ~/.xinitrc thing? or add instructions to make the file executable? but it works, so why bother?
+# but put this in the README, and add a porter author?
+# also include sample runs as well!
+# python main.py /home/ruusaig/Pictures/Wallpapers/ /tmp/ <-- command!
 # ---------------------------------- About ----------------------------------- #
 # This file inserts a wallpaper pipe menu into Openbox which uses feh          #
 # in order to set the wallpaper from a chosen directory.                       #
@@ -25,6 +30,9 @@ from os.path import isdir
 filetypes = "jpg|png|gif"
 # directory where wallpapers are stored (must be long: no ~ symbol allowed)
 directory = sys.argv[1]
+# directory where thumbnails can be found. The files name must match up with teh files in "directory"
+thumbnails = sys.argv[0]
+
 # program to set wallpaper defined in the command string
 program = "feh --bg-scale"
 
@@ -37,20 +45,26 @@ def genmenu(start, directory):
                 # if we get a dir, generate a menu
                 if isdir(di) and ".thumbnails" not in di:
                         print("")
-                        print("  <menu id=\"" + di + "\" label=\"" + d + "\" >")
+                        print(f"  <menu id=\"{di}\" label=\"{d}\" >")
                         genmenu(start, di)
                         print("  </menu>")
                 # if we get a file, check if it is a valid type
                 else:
                         if re.search(filetypes, di.lower()):
-                                # make fi variable just filename, without extension
+                                print("  <item")
+
+                                # open the file
                                 fi = str.replace(str.replace(di, directory, ""), "/", "")
+                                print(f"\ticon= \"{thumbnails}{fi}\"")
+                                
+                                # make fi variable just filename, without extension
                                 fi = fi[:str.rfind(fi, ".")]
                                 # if so, add it to the pipe menu
-                                print("  <item label=\"" + fi + "\"\nicon= \"" + di + "\">")
+                                print(f"\tlabel=\"{fi}\"")
+                                print("  >")
                                 
                                 # execute line to set wallpaper
-                                print("    <action name=\"Execute\"><execute>" + program + " \"" + di + "\"</execute></action>")
+                                print(f"    <action name=\"Execute\"><execute>{program} \"{di}\" </execute></action>")
                                 # if we want to update config file, do so
                                 print("  </item>")
                         
