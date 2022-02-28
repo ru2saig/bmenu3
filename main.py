@@ -31,58 +31,60 @@ filetypes = "jpg|png|gif"
 # directory where wallpapers are stored (must be long: no ~ symbol allowed)
 directory = sys.argv[1]
 # directory where thumbnails can be found. The files name must match up with teh files in "directory"
-thumbnails = sys.argv[0]
+thumbnails = sys.argv[2]
 
 # program to set wallpaper defined in the command string
 program = "feh --bg-scale"
 
-def genmenu(start, directory):
-        # get a directory list
-        dirlist = os.listdir(directory)
-        for d in dirlist:
-                # set di to overall directory
-                di = directory + "/" + d
-                # if we get a dir, generate a menu
-                if isdir(di) and ".thumbnails" not in di:
-                        print("")
-                        print(f"  <menu id=\"{di}\" label=\"{d}\" >")
-                        genmenu(start, di)
-                        print("  </menu>")
-                # if we get a file, check if it is a valid type
-                else:
-                        if re.search(filetypes, di.lower()):
-                                print("  <item")
 
-                                # open the file
-                                fi = str.replace(str.replace(di, directory, ""), "/", "")
-                                print(f"\ticon= \"{thumbnails}{fi}\"")
-                                
-                                # make fi variable just filename, without extension
-                                fi = fi[:str.rfind(fi, ".")]
-                                # if so, add it to the pipe menu
-                                print(f"\tlabel=\"{fi}\"")
-                                print("  >")
-                                
-                                # execute line to set wallpaper
-                                print(f"    <action name=\"Execute\"><execute>{program} \"{di}\" </execute></action>")
-                                # if we want to update config file, do so
-                                print("  </item>")
-                        
+def genmenu(start, directory):
+    # get a directory list
+    dirlist = os.listdir(directory)
+    for d in dirlist:
+        # set di to overall directory
+        di = directory + "/" + d
+        # if we get a dir, generate a menu
+        if isdir(di) and ".thumbnails" not in di:
+            print("")
+            print(f"  <menu id=\"{di}\" label=\"{d}\" >")
+            genmenu(start, di)
+            print("  </menu>")
+        # if we get a file, check if it is a valid type
+        else:
+            if re.search(filetypes, di.lower()):
+                print("  <item")
+
+                # open the file
+                fi = str.replace(str.replace(di, directory, ""), "/", "")
+                print(f"\ticon= \"{thumbnails}{fi}\"")
+
+                # make fi variable just filename, without extension
+                fi = fi[:str.rfind(fi, ".")]
+                # if so, add it to the pipe menu
+                print(f"\tlabel=\"{fi}\"")
+                print("  >")
+
+                # execute line to set wallpaper
+                print(f"    <action name=\"Execute\"><execute>{program} \"{di}\" </execute></action>")
+                # if we want to update config file, do so
+                print("  </item>")
+
 
 def main():
 
-        # start menu
-        print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
-        print("<openbox_pipe_menu>")
-        
-        # set the original start directory
-        start = directory
-        # generate menu
-        genmenu(start, directory)
-        
-        # end menu
-        print("</openbox_pipe_menu>")
+    # start menu
+    print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+    print("<openbox_pipe_menu>")
 
-# run the main() function               
+    # set the original start directory
+    start = directory
+    # generate menu
+    genmenu(start, directory)
+
+    # end menu
+    print("</openbox_pipe_menu>")
+
+
+# run the main() function
 if __name__ == "__main__":
-        main()
+    main()
