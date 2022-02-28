@@ -1,6 +1,8 @@
 # bmenu
-This is a port of http://openbox.org/wiki/Openbox:Pipemenus:bmenu-1.0 to Python 3.x, and with some additional features.
-[!Screenshot of bmenu in action](screenshot.png "bmenu")
+This is a fork and port of http://openbox.org/wiki/Openbox:Pipemenus:bmenu-1.0 to Python 3.x, and with some additional features.
+<p align="center">
+   <img src="./screenshot.png" alt="Bmenu in action"/>
+</p>
 
 Copied from the main.py file (with some modifications):
 
