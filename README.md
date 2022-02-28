@@ -39,7 +39,7 @@ sudo apt install build-essential git feh
 
 Clone the repository with 
 ```
-git clone TODO: add the repository link, after creating it
+git clone https://github.com/ru2saig/bmenu3
 ```
 
 ## Installation
