@@ -101,3 +101,6 @@ http://openbox.org/wiki/Openbox:Pipemenus
 
 The original bmenu, written for Python 2.x:
 http://openbox.org/wiki/Openbox:Pipemenus:bmenu-1.0
+
+
+https://dev.to/1001binary/insert-center-image-in-readme-md-on-github-41ci
