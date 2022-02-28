@@ -4,11 +4,7 @@ import re
 import sys
 from os.path import isdir
 
-#TODO: put this in the README, and add more things,a s well.
-#also change the ~/.xinitrc thing? or add instructions to make the file executable? but it works, so why bother?
-# but put this in the README, and add a porter author?
-# also include sample runs as well!
-# python main.py /home/ruusaig/Pictures/Wallpapers/ /tmp/ <-- command!
+
 # ---------------------------------- About ----------------------------------- #
 # This file inserts a wallpaper pipe menu into Openbox which uses feh          #
 # in order to set the wallpaper from a chosen directory.                       #
