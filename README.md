@@ -4,10 +4,10 @@ This is a fork and port of http://openbox.org/wiki/Openbox:Pipemenus:bmenu-1.0 t
    <img src="./screenshot.png" alt="Bmenu in action"/>
 </p>
 
-Copied from the main.py file (with some modifications):
+Copied from the bmenu.py file (with some modifications):
 
 
-This file (main.py) inserts a wallpaper pipe menu into Openbox which uses feh
+This file (bmenu.py) inserts a wallpaper pipe menu into Openbox which uses feh
 in order to set the wallpaper from a chosen directory.
                                                                               
 Authors: dav1d(main author) and Pwnz3r(hacker and redistributor)
@@ -20,12 +20,15 @@ into ~/.fehbg. In order to set the wallpaper back at the next start of
 Openbox, just add the following to ~/.xinitrc: ``` eval `cat ~/.fehbg` ```
 
 If you use something else than feh, then modify the program variable in bmenu.py.
+The script uses xdg-open in order to open the folder.
 
 
 Added Features:
 - Ported to Python 3.x
 - Thumbnails, so you don't go guessing in the dark
-- An extra file, which is used to generate thumbnails
+- An extra script, used to generate thumbnails
+- A random wallpaper feature
+- Open the wallpaper directory
 
 ## Requirements
 - Python 3.x

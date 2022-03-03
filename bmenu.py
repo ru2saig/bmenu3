@@ -4,7 +4,6 @@ import re
 import sys
 from random import choice
 from os.path import isdir
-import tracemalloc
 
 # ---------------------------------- About ----------------------------------- #
 # This file inserts a wallpaper pipe menu into Openbox which uses feh          #
