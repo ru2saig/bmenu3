@@ -2,8 +2,9 @@
 import os
 import re
 import sys
+from random import choice
 from os.path import isdir
-
+import tracemalloc
 
 # ---------------------------------- About ----------------------------------- #
 # This file inserts a wallpaper pipe menu into Openbox which uses feh          #
@@ -31,6 +32,9 @@ thumbnails = sys.argv[2]
 
 # program to set wallpaper defined in the command string
 program = "feh --bg-scale"
+
+# image paths, for random selection
+img_paths = []
 
 
 def genmenu(start, directory):
@@ -60,6 +64,8 @@ def genmenu(start, directory):
                 print(f"\tlabel=\"{fi}\"")
                 print("  >")
 
+                img_paths.append(di)
+
                 # execute line to set wallpaper
                 print(f"    <action name=\"Execute\"><execute>{program} \"{di}\" </execute></action>")
                 # if we want to update config file, do so
@@ -67,7 +73,6 @@ def genmenu(start, directory):
 
 
 def main():
-
     # start menu
     print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
     print("<openbox_pipe_menu>")
@@ -75,17 +80,29 @@ def main():
     # open base wallpaper directory
     print(f"""<item label=\"Open Wallpaper Directory\">
     <action name=\"Execute\"><execute>xdg-open {directory}</execute></action>
-  </item>""")
+    </item>""")
+
+    # TODO: some how put the random wallpaper thing here? How will I do that? Save up the buffer?
+    # Is that good? Anyother way?
 
     print("<separator />")
     # set the original start directory
     start = directory
     # generate menu
     genmenu(start, directory)
+
+    # set a random wallpaper, from the list of wallpapers
+    rand_wallpaper = choice(img_paths)
+    print(f"""<item label=\"Set a Random Wallpaper\">
+    <action name=\"Execute\"><execute>{program} \"{rand_wallpaper}\"</execute></action>
+    </item>""")
+
     # end menu
     print("</openbox_pipe_menu>")
 
 
 # run the main() function
 if __name__ == "__main__":
+    tracemalloc.start()
     main()
+    print("Current: %d, Peak %d" % tracemalloc.get_traced_memory())
