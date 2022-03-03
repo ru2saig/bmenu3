@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 import re
 import sys
@@ -26,7 +26,7 @@ from os.path import isdir
 filetypes = "jpg|png|gif"
 # directory where wallpapers are stored (must be long: no ~ symbol allowed)
 directory = sys.argv[1]
-# directory where thumbnails can be found. The files name must match up with teh files in "directory"
+# directory where thumbnails can be found. The files name must match up with the files in "directory"
 thumbnails = sys.argv[2]
 
 # program to set wallpaper defined in the command string

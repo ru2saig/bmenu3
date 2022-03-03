@@ -19,6 +19,9 @@ feh automatically inserts the full command string used to set the wallpaper
 into ~/.fehbg. In order to set the wallpaper back at the next start of 
 Openbox, just add the following to ~/.xinitrc: ``` eval `cat ~/.fehbg` ```
 
+If you use something else than feh, then modify the program variable in bmenu.py.
+
+
 Added Features:
 - Ported to Python 3.x
 - Thumbnails, so you don't go guessing in the dark
@@ -50,32 +53,25 @@ Removal with ```make uninstall```, again with proper permissions.
 ## Running
 Make sure that you have ```showIcons``` set to yes in your ```rc.xml```. Sea http://openbox.org/wiki/Help:Menus.
 See http://openbox.org/wiki/Help:Menus#Pipe_menus for how to set up ```bmenu``` in your menu.xml.
+Steps:
 
 
+Add something like this in your menu.xml
 Here's how I have in my menu.xml [snippet]:
 
 
 ```	
-	<menu id="bmenu" label="Set Wallpaper">
-		execute="bmenu /home/ruusaig/Pictures/Wallpapers /home/ruusaig/Pictures/.thumbnails/"/>
+	<menu id="bmenu" label="Set Wallpaper"
+		execute="bmenu /path/to/wallpapers /path/to/thumbnails/"/>
 ```
 
 
-The dmenu command I use in my menu.xml:
+Generate the thumbnails, for the images in the wallpaper folder, with something like this:
 
 
 ```
-bmenu /path/to/wallpapers/ /path/to/thumbnails/
+genthumbs /path/to/wallpapers/ /path/to/thumbnails/
 ```
-
-
-Command used to generate the thumbnails, for bmenu:
-
-
-```
-genthumbs /path/to/wallpapers/ /path/to/destination/of/thumbnails/
-```
-
 
 
 ## Contributing

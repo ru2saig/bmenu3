@@ -1,7 +1,7 @@
 PREFIX=/usr/local/bin
 
 install:
-	cp main.py $(PREFIX)/bmenu
+	cp bmenu.py $(PREFIX)/bmenu
 	chmod 755 $(PREFIX)/bmenu
 	cp genthumbs.py $(PREFIX)/genthumbs
 	chmod 755 $(PREFIX)/genthumbs
