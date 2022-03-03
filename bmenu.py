@@ -81,11 +81,8 @@ def main():
     print(f"""<item label=\"Open Wallpaper Directory\">
     <action name=\"Execute\"><execute>xdg-open {directory}</execute></action>
     </item>""")
-
-    # TODO: some how put the random wallpaper thing here? How will I do that? Save up the buffer?
-    # Is that good? Anyother way?
-
     print("<separator />")
+
     # set the original start directory
     start = directory
     # generate menu
@@ -103,6 +100,4 @@ def main():
 
 # run the main() function
 if __name__ == "__main__":
-    tracemalloc.start()
     main()
-    print("Current: %d, Peak %d" % tracemalloc.get_traced_memory())
