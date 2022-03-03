@@ -72,11 +72,16 @@ def main():
     print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
     print("<openbox_pipe_menu>")
 
+    # open base wallpaper directory
+    print(f"""<item label=\"Open Wallpaper Directory\">
+    <action name=\"Execute\"><execute>xdg-open {directory}</execute></action>
+  </item>""")
+
+    print("<separator />")
     # set the original start directory
     start = directory
     # generate menu
     genmenu(start, directory)
-
     # end menu
     print("</openbox_pipe_menu>")
 
